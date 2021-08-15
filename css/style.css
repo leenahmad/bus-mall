@@ -1,0 +1,45 @@
+* {
+    box-sizing: border-box;
+  }
+  h1 {
+    text-align: center;
+    color: blueviolet;
+  }
+  p{
+      text-align: center;
+      color: blueviolet;
+  }
+  img {
+    display: block;
+    width: 150px;
+    float: left;
+    height: 150px;
+    border: 2px solid blueviolet;
+  }
+  #image-container {
+     padding-left: 200px; 
+    /* border: 2px solid black; */
+    width: 800px;
+    margin: 0 auto;
+    height: 175px; 
+  }
+  #leftImg,
+  #midleImg,
+  #rightImg{
+    width: 200px;
+    margin: 10px;
+    border-radius: 50%;
+  }
+  span {
+    margin-left: 50px;
+  }
+  #attempts {
+    margin-left: 20px;
+    font-size: 30px;
+  }
+
+  
+  footer{
+      text-align: center;
+      color: blueviolet;
+  }
