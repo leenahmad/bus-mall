@@ -9,6 +9,9 @@ let busImages = ['bag.jpg', 'banana.jpg','bathroom.jpg', 'boots.jpg','breakfast.
 let maxAttempts = 25;
 let attempt = 1;
 let bus = [];
+let bName = [];
+let votes = [];
+let views = [];
 
 function BusImage(busName){
   this.bName = busName.split('.')[0];
@@ -16,6 +19,7 @@ function BusImage(busName){
   this.votes = 0;
   this.views = 0;
   bus.push(this);
+  bName.push(this.bName);
 }
 
 for (let i =0; i< busImages.length; i++){
@@ -24,21 +28,29 @@ for (let i =0; i< busImages.length; i++){
 
 function randomImage(){
   return Math.floor(Math.random() * bus.length);
+
 }
 
 let leftIndex;
 let midelIndex;
 let rightIndex;
 
+let arr = [];
+
 function renderImg(){
   leftIndex = randomImage();
   midelIndex = randomImage();
   rightIndex = randomImage();
 
-  while(leftIndex === rightIndex || rightIndex === midelIndex || midelIndex === leftIndex){
+  while(leftIndex === rightIndex || rightIndex === midelIndex || midelIndex === leftIndex || arr.includes(leftIndex) || arr.includes(midelIndex) || arr.includes(rightIndex)){
     leftIndex = randomImage();
     midelIndex = randomImage();
+    rightIndex = randomImage();
   }
+  arr[0] = leftIndex;
+  arr[1] = midelIndex;
+  arr[2] = rightIndex;
+
 
   leftImg.setAttribute('src',bus[leftIndex].bImg);
   midelImg.setAttribute('src',bus[midelIndex].bImg);
@@ -83,9 +95,49 @@ function showResilts(){
     let liEl = document.createElement('li');
     result.appendChild(liEl);
     liEl.textContent = `${bus[i].bName} has ${bus[i].votes} votes and ${bus[i].views} views `;
+    votes.push(bus[i].votes);
+    views.push(bus[i].views);
   }
   resultsButton.removeEventListener('click' , showResilts);
+  chartRender();
 }
 
+function chartRender() {
+  let ctx = document.getElementById('myChart').getContext('2d');
+  let myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: bName,
+      datasets: [{
+        label: '# of Votes',
+        data: votes,
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)'
+        ],
+        borderWidth: 1
+      }, {
+        label: '# of views',
+        data: views,
+        backgroundColor: [
+          'rgba(54, 162, 235, 0.2)'
+        ],
+        borderColor: [
+          'rgba(54, 162, 235, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+}
 
 
