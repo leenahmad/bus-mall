@@ -5,8 +5,8 @@ let midelImg = document.getElementById('midelImg');
 let rightImg = document.getElementById('rightImg');
 let result = document.getElementById('results');
 let resultsButton = document.getElementById('resultsButton');
-let busImages = ['bag.jpg', 'banana.jpg','bathroom.jpg', 'boots.jpg','breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg','dog-duck.jpg','dragon.jpg','pen.jpg','pet-sweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','water-can.jpg','wine.jpg'];
-let maxAttempts = 25;
+let busImages = ['bag.jpg', 'banana.jpg','bathroom.jpg', 'boots.jpg','breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg','dog-duck.jpg','dragon.jpg','pen.jpg','pet-sweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','water-can.jpg','wine-glass.jpg'];
+let maxAttempts = 19;
 let attempt = 1;
 let bus = [];
 
@@ -35,8 +35,9 @@ function renderImg(){
   midelIndex = randomImage();
   rightIndex = randomImage();
 
-  while(leftIndex === midelIndex || rightIndex === midelIndex || leftIndex === rightIndex){
+  while(leftIndex === rightIndex || rightIndex === midelIndex || midelIndex === leftIndex){
     leftIndex = randomImage();
+    midelIndex = randomImage();
   }
   leftImg.setAttribute('src',bus[leftIndex].bImg);
   midelImg.setAttribute('src',bus[midelIndex].bImg);
