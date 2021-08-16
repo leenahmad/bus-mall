@@ -6,7 +6,7 @@ let rightImg = document.getElementById('rightImg');
 let result = document.getElementById('results');
 let resultsButton = document.getElementById('resultsButton');
 let busImages = ['bag.jpg', 'banana.jpg','bathroom.jpg', 'boots.jpg','breakfast.jpg', 'bubblegum.jpg', 'chair.jpg', 'cthulhu.jpg','dog-duck.jpg','dragon.jpg','pen.jpg','pet-sweep.jpg','scissors.jpg','shark.jpg','sweep.png','tauntaun.jpg','unicorn.jpg','water-can.jpg','wine-glass.jpg'];
-let maxAttempts = 19;
+let maxAttempts = 25;
 let attempt = 1;
 let bus = [];
 
@@ -39,6 +39,7 @@ function renderImg(){
     leftIndex = randomImage();
     midelIndex = randomImage();
   }
+
   leftImg.setAttribute('src',bus[leftIndex].bImg);
   midelImg.setAttribute('src',bus[midelIndex].bImg);
   rightImg.setAttribute('src',bus[rightIndex].bImg);
@@ -67,10 +68,12 @@ function clickHandler(event){
     }
     renderImg();
     attempt++;
+  }else{
+    leftImg.removeEventListener('click' , clickHandler);
+    midelImg.removeEventListener('click' ,clickHandler);
+    rightImg.removeEventListener('click' , clickHandler);
+
   }
-  leftImg.removeEventListener('click' , clickHandler);
-  midelImg.removeEventListener('click' ,clickHandler);
-  rightImg.removeEventListener('click' , clickHandler);
 }
 
 
