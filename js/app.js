@@ -13,7 +13,9 @@ let bName = [];
 let votes = [];
 let views = [];
 
-
+for (let i =0; i< busImages.length; i++){
+  new BusImage(busImages[i]);
+}
 function saveToLocalStorage(){
   let data = JSON.stringify(bus);
   localStorage.setItem('bus' , data);
@@ -43,9 +45,9 @@ function BusImage(busName){
   bName.push(this.bName);
 }
 
-for (let i =0; i< busImages.length; i++){
-  new BusImage(busImages[i]);
-}
+// for (let i =0; i< busImages.length; i++){
+//   new BusImage(busImages[i]);
+// }
 
 function randomImage(){
   return Math.floor(Math.random() * bus.length);
