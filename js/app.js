@@ -13,6 +13,27 @@ let bName = [];
 let votes = [];
 let views = [];
 
+
+function saveToLocalStorage(){
+  let data = JSON.stringify(bus);
+  localStorage.setItem('bus' , data);
+}
+
+function readFromLocalStorage(){
+  let stringObj = localStorage.getItem('bus');
+  let normalObj = JSON.parse(stringObj);
+
+  if(normalObj){
+
+    bus = normalObj;
+
+    // renderImg();
+  }
+}
+
+readFromLocalStorage();
+
+
 function BusImage(busName){
   this.bName = busName.split('.')[0];
   this.bImg = `img/${busName}`;
@@ -80,6 +101,7 @@ function clickHandler(event){
     }
     renderImg();
     attempt++;
+    saveToLocalStorage();
   }else{
     leftImg.removeEventListener('click' , clickHandler);
     midelImg.removeEventListener('click' ,clickHandler);
