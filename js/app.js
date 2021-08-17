@@ -13,6 +13,7 @@ let bName = [];
 let votes = [];
 let views = [];
 
+
 for (let i =0; i< busImages.length; i++){
   new BusImage(busImages[i]);
 }
